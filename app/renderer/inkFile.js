@@ -144,9 +144,17 @@ InkFile.prototype.setValue = function(text) {
     this.aceDocument.setValue(text);
 }
 
+// 根據副檔名選擇 Ace 語法模式
+InkFile.prototype.getAceMode = function() {
+    var ext = path.extname(this.relPath || '').toLowerCase();
+    if (ext === '.lua') return 'ace/mode/lua';
+    if (ext === '.txt') return 'ace/mode/text';
+    return this.inkMode; // 預設：Ink 語法模式
+};
+
 InkFile.prototype.getAceSession = function() {
     if( this.aceSession == null ) {
-        this.aceSession = new EditSession(this.aceDocument, this.inkMode);
+        this.aceSession = new EditSession(this.aceDocument, this.getAceMode());
         this.aceSession.setUseWrapMode(true);
         this.aceSession.setUndoManager(new ace.UndoManager());
     }
@@ -161,7 +169,8 @@ InkFile.prototype.save = function(afterSaveCallback) {
     // Need to show save path dialog?
     if( !this.absolutePath() ) {
         ipcRenderer.invoke("showSaveDialog", { filters: [
-            { name: 'Ink files', extensions: ['ink'] },
+            { name: 'Ink files',  extensions: ['ink'] },
+            { name: 'Lua files',  extensions: ['lua'] },
             { name: 'Text files', extensions: ['txt'] }
         ]}).then((result) => {
             console.log(result);

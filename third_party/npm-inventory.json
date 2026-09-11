@@ -1,0 +1,181 @@
+[
+  {
+    "name": "anymatch",
+    "version": "3.1.3",
+    "license": "ISC",
+    "source": "https://github.com/micromatch/anymatch",
+    "notices": [
+      "LICENSE"
+    ]
+  },
+  {
+    "name": "binary-extensions",
+    "version": "2.3.0",
+    "license": "MIT",
+    "source": "sindresorhus/binary-extensions",
+    "notices": [
+      "license"
+    ]
+  },
+  {
+    "name": "braces",
+    "version": "3.0.2",
+    "license": "MIT",
+    "source": "micromatch/braces",
+    "notices": [
+      "LICENSE"
+    ]
+  },
+  {
+    "name": "chokidar",
+    "version": "3.6.0",
+    "license": "MIT",
+    "source": "git+https://github.com/paulmillr/chokidar.git",
+    "notices": [
+      "LICENSE"
+    ]
+  },
+  {
+    "name": "fill-range",
+    "version": "7.0.1",
+    "license": "MIT",
+    "source": "jonschlinkert/fill-range",
+    "notices": [
+      "LICENSE"
+    ]
+  },
+  {
+    "name": "fuzzaldrin-plus",
+    "version": "0.6.0",
+    "license": "MIT",
+    "source": "https://github.com/jeancroy/fuzzaldrin-plus.git",
+    "notices": [
+      "LICENSE.md"
+    ]
+  },
+  {
+    "name": "glob-parent",
+    "version": "5.1.2",
+    "license": "ISC",
+    "source": "gulpjs/glob-parent",
+    "notices": [
+      "LICENSE"
+    ]
+  },
+  {
+    "name": "inkjs",
+    "version": "2.2.3",
+    "license": "MIT",
+    "notices": [
+      "LICENSE.md"
+    ]
+  },
+  {
+    "name": "is-binary-path",
+    "version": "2.1.0",
+    "license": "MIT",
+    "source": "sindresorhus/is-binary-path",
+    "notices": [
+      "license"
+    ]
+  },
+  {
+    "name": "is-extglob",
+    "version": "2.1.1",
+    "license": "MIT",
+    "source": "jonschlinkert/is-extglob",
+    "notices": [
+      "LICENSE"
+    ]
+  },
+  {
+    "name": "is-glob",
+    "version": "4.0.3",
+    "license": "MIT",
+    "source": "micromatch/is-glob",
+    "notices": [
+      "LICENSE"
+    ]
+  },
+  {
+    "name": "is-number",
+    "version": "7.0.0",
+    "license": "MIT",
+    "source": "jonschlinkert/is-number",
+    "notices": [
+      "LICENSE"
+    ]
+  },
+  {
+    "name": "lodash",
+    "version": "4.17.21",
+    "license": "MIT",
+    "source": "lodash/lodash",
+    "notices": [
+      "LICENSE"
+    ]
+  },
+  {
+    "name": "mkdirp",
+    "version": "3.0.1",
+    "license": "MIT",
+    "source": "https://github.com/isaacs/node-mkdirp.git",
+    "notices": [
+      "LICENSE"
+    ]
+  },
+  {
+    "name": "normalize-path",
+    "version": "3.0.0",
+    "license": "MIT",
+    "source": "jonschlinkert/normalize-path",
+    "notices": [
+      "LICENSE"
+    ]
+  },
+  {
+    "name": "picomatch",
+    "version": "2.3.1",
+    "license": "MIT",
+    "source": "micromatch/picomatch",
+    "notices": [
+      "LICENSE"
+    ]
+  },
+  {
+    "name": "randombytes",
+    "version": "2.0.3",
+    "license": "MIT",
+    "source": "git@github.com:crypto-browserify/randombytes.git",
+    "notices": [
+      "LICENSE"
+    ]
+  },
+  {
+    "name": "randomstring",
+    "version": "1.3.0",
+    "license": "MIT",
+    "source": "git://github.com/klughammer/node-randomstring.git",
+    "notices": [
+      "LICENSE"
+    ]
+  },
+  {
+    "name": "readdirp",
+    "version": "3.6.0",
+    "license": "MIT",
+    "source": "git://github.com/paulmillr/readdirp.git",
+    "notices": [
+      "LICENSE"
+    ]
+  },
+  {
+    "name": "to-regex-range",
+    "version": "5.0.1",
+    "license": "MIT",
+    "source": "micromatch/to-regex-range",
+    "notices": [
+      "LICENSE"
+    ]
+  }
+]

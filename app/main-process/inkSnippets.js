@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const i18n = require("./i18n/i18n.js");
+// Translate message IDs only when AppMenus.refresh() builds the menu.
+const i18n = { _: key => key };
 
 // Find longer snippets folder
 const snippetsDirRelease = path.join(__dirname, "../../app.asar.unpacked/main-process", "ink/longer-ink-snippets");
@@ -106,10 +107,6 @@ exports.snippets = [
                 "name": i18n._('Modify variable'),
                 "ink": "~ myNumber = myNumber + 1\n"
             },
-            {
-                name: i18n._('Get variable type'),
-                ink:  loadLongerSnippet("type_of.ink") 
-            }
 
         ]
     },
@@ -180,10 +177,6 @@ exports.snippets = [
             {
                 name: i18n._('List: pop_random'),
                 ink:  loadLongerSnippet("list_pop_random.ink") 
-            },
-            {
-                name: i18n._('List: LIST_NEXT and LIST_PREV'),
-                ink:  loadLongerSnippet("list_prev_next.ink") 
             },
             {
                 name: i18n._('List: list_item_is_member_of'),
@@ -274,16 +267,8 @@ exports.snippets = [
         categoryName: i18n._('Useful systems'),
         snippets: [
             {
-                name: i18n._('List Items as Integer Variables'),
-                ink:  loadLongerSnippet("listToNumber.ink") 
-            },
-            {
                 name: i18n._('Swing Variables'),
                 ink:  loadLongerSnippet("swing_variables.ink") 
-            },
-            {
-                name: i18n._('Storylets'),
-                ink:  loadLongerSnippet("storylets.ink") 
             }
         ]
     },
@@ -292,23 +277,9 @@ exports.snippets = [
 
     {
         categoryName: i18n._('Full stories'),
-        snippets: [
-            {
-                name: i18n._('Crime Scene (from Writing with Ink)'),
-                ink: loadLongerSnippet("murder_scene.ink")
-            },
-            {
-                name: i18n._('Swindlestones (from Sorcery!)'),
-                ink: loadLongerSnippet("swindlestones.ink")
-            },  
-            {
-                name: i18n._('Pontoon Game (from Overboard!)'),
-                ink: loadLongerSnippet("pontoon_example.ink")
-            },
-            {
-                name: i18n._('The Intercept'),
-                ink: loadLongerSnippet("theintercept.ink")
-            }
-        ]
+        snippets: [{
+            name: '繁中示範：雨天書店',
+            ink: fs.readFileSync(path.join(__dirname, '../examples/雨天書店/主程式.ink'), 'utf8')
+        }]
     }
 ];

@@ -156,6 +156,7 @@ exports.EditorView = {
     clearErrors: clearErrors,
     setEvents: (e) => { events = e; },
     getValue: () => { return editor.getValue(); },
+    getSelectedText: () => { return editor.getSelectedText(); },
     setValue: (v) => { editor.setValue(v); },
     insert: (txt) => editor.insert(txt),
     gotoLine: (row, col) => { editor.gotoLine(row, col); editor.focus(); },

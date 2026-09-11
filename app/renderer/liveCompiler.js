@@ -88,6 +88,13 @@ function reloadInklecateSession() {
         return;
     }
 
+    // 非 .ink 主檔（如 .lua / .txt）不進行 Ink 編譯，靜默跳過
+    if( !/\.ink$/i.test(project.mainInk.filename()) ) {
+        reloadPending = false;
+        updateCompilerIsBusy(false);
+        return;
+    }
+
     lastEditorChange = null;
     reloadPending = false;
 
@@ -113,6 +120,10 @@ function reloadInklecateSession() {
 }
 
 function exportJson(inkJsCompatible, callback) {
+    if( !/\.ink$/i.test(project.mainInk.filename()) ) {
+        if( callback ) callback(false);
+        return;
+    }
     exportCompleteCallback = callback;
 
     var instr = buildCompileInstruction();
@@ -126,6 +137,10 @@ function exportJson(inkJsCompatible, callback) {
 }
 
 function getStats(callback) {
+    if( !/\.ink$/i.test(project.mainInk.filename()) ) {
+        if( callback ) callback(null);
+        return;
+    }
     statsCompleteCallback = callback;
 
     var instr = buildCompileInstruction();

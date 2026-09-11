@@ -27,7 +27,7 @@ function refresh() {
     // Create the themes menu, with the correct current theme ticked
     for (const t of ['light', 'dark', 'contrast', 'focus']) {
         themes.push({
-            label: t.substring(0, 1).toUpperCase() + t.substring(1),
+            label: i18n._(t.substring(0, 1).toUpperCase() + t.substring(1)),
             type: 'radio',
             checked: t === theme,
             click: () => {
@@ -292,6 +292,7 @@ function refresh() {
                     }
                 },
                 {
+                    id: 'inky-theme-menu',
                     label: i18n._('Theme'),
                     submenu: themes
                 },
@@ -357,7 +358,68 @@ function refresh() {
         },
         
         inkMenu,
-        
+
+        // ── 翻譯選單 ───────────────────────────────────
+        {
+            label: i18n._('翻譯(&T)'),
+            id: 'translation',
+            submenu: [
+                {
+                    label: i18n._('翻譯目前檔案'),
+                    accelerator: 'CmdOrCtrl+Shift+T',
+                    click: (item, focusedWindow) => {
+                        if (focusedWindow) focusedWindow.webContents.send('translation-translate-current');
+                    }
+                },
+                {
+                    label: i18n._('翻譯整個專案'),
+                    accelerator: 'CmdOrCtrl+Shift+Alt+T',
+                    click: (item, focusedWindow) => {
+                        if (focusedWindow) focusedWindow.webContents.send('translation-translate-project');
+                    }
+                },
+                { type: 'separator' },
+                {
+                    label: i18n._('翻譯設定...'),
+                    accelerator: 'CmdOrCtrl+Shift+,',
+                    click: (item, focusedWindow) => {
+                        if (focusedWindow) focusedWindow.webContents.send('translation-open-settings');
+                    }
+                },
+                {
+                    label: i18n._('查看用量統計'),
+                    click: (item, focusedWindow) => {
+                        if (focusedWindow) focusedWindow.webContents.send('translation-show-usage');
+                    }
+                },
+                { type: 'separator' },
+                {
+                    label: i18n._('搜尋 & 取代...'),
+                    accelerator: 'CmdOrCtrl+H',
+                    click: (item, focusedWindow) => {
+                        if (focusedWindow) focusedWindow.webContents.send('translation-find-replace');
+                    }
+                },
+                { type: 'separator' },
+                {
+                    label: i18n._('使用說明 / Help...'),
+                    accelerator: 'F1',
+                    click: (item, focusedWindow) => {
+                        if (focusedWindow) focusedWindow.webContents.send('translation-open-about');
+                    }
+                }
+            ]
+        },
+        // ─────────────────────────────────────────────
+
+        {
+            label: i18n._('Examples'),
+            submenu: [
+                { label: i18n._('Mist Harbor Tutorial'), click: () => callbacks.openExample('mist') },
+                { label: i18n._('Rainy Bookshop'), click: () => callbacks.openExample('bookshop') },
+                { label: i18n._('Translation Practice'), click: () => callbacks.openExample('translation') }
+            ]
+        },
         {
             label: i18n._('&Window'),
             role: 'window',

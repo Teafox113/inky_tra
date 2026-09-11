@@ -26,6 +26,8 @@ const InkProject = require("./inkProject.js").InkProject;
 const NavHistory = require("./navHistory.js").NavHistory;
 const GotoAnything = require("./goto.js").GotoAnything;
 const i18n = require("./i18n.js");
+const { TranslationView } = require("./translationView.js");
+const AssistantView = require("./assistantView.js");
 
 InkProject.setEvents({
     "newProject": (project) => {
@@ -67,6 +69,37 @@ $(document).ready(() => {
         }
         NavView.setKnots(InkProject.currentProject.mainInk);
     }
+
+    // 初始化翻譯功能
+    TranslationView.init(InkProject, EditorView);
+
+    // 工具列翻譯按鈕
+    const translateBtn = document.getElementById('toolbar-translate-btn');
+    if (translateBtn) translateBtn.addEventListener('click', () => TranslationView.translateCurrentFile());
+
+    const selBtn = document.getElementById('toolbar-translate-sel-btn');
+    if (selBtn) selBtn.addEventListener('click', () => TranslationView.translateSelection());
+
+    const settingsBtn = document.getElementById('toolbar-translation-settings-btn');
+    if (settingsBtn) settingsBtn.addEventListener('click', () => TranslationView.openSettingsDialog());
+
+    const aboutBtn = document.getElementById('toolbar-translation-about-btn');
+    if (aboutBtn) aboutBtn.addEventListener('click', () => TranslationView.openAboutModal());
+
+    // 初始化 AI 助理
+    AssistantView.init(EditorView, InkProject);
+
+    // 工具列助理按鈕
+    const asBtn = document.getElementById('as-open-btn');
+    if (asBtn) asBtn.addEventListener('click', () => AssistantView.toggleAssistant());
+
+    // 快捷鍵 Ctrl+Shift+A
+    document.addEventListener('keydown', e => {
+        if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+            e.preventDefault();
+            AssistantView.toggleAssistant();
+        }
+    });
 });
 
 function gotoIssue(issue) {
@@ -292,10 +325,9 @@ NavView.setEvents({
     },
     addInclude: (filename, addToMainInk) => {
 
-        // Force filename to have .ink on the end if it hasn't been done manually by user
-        // (Is there ever a scenario where this isn't wanted?)
-        // Note that if they write my_file.txt then it will turn into my_file.txt.ink
-        if( path.extname(filename) != ".ink" ) filename += ".ink";
+        // Force filename to have .ink if no recognised extension was given
+        var _knownExts = ['.ink', '.lua', '.txt'];
+        if( !_knownExts.includes(path.extname(filename).toLowerCase()) ) filename += ".ink";
 
         var newInkFile = InkProject.currentProject.addNewInclude(filename, addToMainInk);
         if( newInkFile ) {

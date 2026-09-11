@@ -1,0 +1,41 @@
+{
+  "appName": "Inky Translation Fork",
+  "fileName": "Inky-Translation-Fork-v1.8.0-dev.3-windows-x64.zip",
+  "version": "1.8.0-dev.3",
+  "edition": "Windows x64 開發版",
+  "modifiedDate": "2026-09-12",
+  "creator": "FloofyFox",
+  "creatorUrl": "https://github.com/Teafox113",
+  "repository": "https://github.com/Teafox113/inky_tra",
+  "creatorAvatar": null,
+  "avatarStatus": "使用者於 2026-09-12 確認持有頭像著作權；本版目前仍使用文字與 emoji，尚未嵌入圖片",
+  "upstream": {
+    "name": "Inky",
+    "author": "inkle Ltd",
+    "url": "https://github.com/inkle/inky",
+    "importedPackageVersion": "0.15.2",
+    "legacyForkLabel": "v1.7"
+  },
+  "usageScenario": "Ink 編輯、繁體中文操作、文本在地化與 AI 輔助校對",
+  "dataHandling": "本機編輯與編譯；使用 API 功能時傳送文本及提示至使用者設定的服務；記住的 API Key 存於本機未加密 JSON。",
+  "features": [
+    "繁中介面",
+    "API 翻譯",
+    "詞彙表",
+    "費用估算",
+    "搜尋取代",
+    "AI 助理",
+    "原創操作示範",
+    "霧港十三夜：角色建立、點數分配與巢狀分支教學"
+  ],
+  "releaseNotes": [
+    "首次開啟載入霧港十三夜；既有使用者升級也展示一次",
+    "五檔 Ink 教學涵蓋姓名、三種背景、屬性、技能、物品、條件檢定與四種結局"
+  ],
+  "knownLimitations": [
+    "完整互動驗收待完成",
+    "語法保護與術語修正仍需人工校對",
+    "尚未完成 Electron 升級評估"
+  ],
+  "thirdPartyLibraries": "THIRD_PARTY_LICENSES.md"
+}

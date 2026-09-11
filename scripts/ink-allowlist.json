@@ -1,0 +1,118 @@
+{
+  "app/examples/translation-practice/practice.ink": {
+    "origin": "本專案原創示範",
+    "sha256": "1ddf664cd53dc8ac3dd113f858dcb06e22c747ebffefb927e302e7582a83320b"
+  },
+  "app/examples/雨天書店/主程式.ink": {
+    "origin": "本專案原創示範",
+    "sha256": "5106132abd9b2db011fe16b7bd96edf2901203f1f07002265ece5fe451207178"
+  },
+  "app/main-process/ink/longer-ink-snippets/a_or_an.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "13781b243bd4547c93969d1529c49c85025f7ac1ca66a28f451102f312225788"
+  },
+  "app/main-process/ink/longer-ink-snippets/came_from.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "be779b371de517bce175a5ca2cf46e5fc9b97a103cf4b46bbee83dd6fe6d01d1"
+  },
+  "app/main-process/ink/longer-ink-snippets/listToNumber.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "bc5acfe4f208cc228d0a3b03864fba7882690c67910a52a5d3ba35b413947cb1"
+  },
+  "app/main-process/ink/longer-ink-snippets/list_item_is_member_of.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "2bbce24f3095a1989c7451a02d036d21df433e9c22281355ecd470e234f34557"
+  },
+  "app/main-process/ink/longer-ink-snippets/list_pop.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "493b5f79e7a15b9578c0c87ec4d0748f776017a6a986de28091ab2c71a72383f"
+  },
+  "app/main-process/ink/longer-ink-snippets/list_pop_random.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "d84997b818f5dc11804536d04269399fd1029df670c8c67759d334df77d79f60"
+  },
+  "app/main-process/ink/longer-ink-snippets/list_prev_next.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "09e9ae555fb7d5ccdf4acd47692ab94d144b5cf7c6e89765625080771a6d4981"
+  },
+  "app/main-process/ink/longer-ink-snippets/list_random_subset.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "6c5f11d42a16d0c1fa32aed19885c3cb827c79214632709f48f72ab9d0a363c0"
+  },
+  "app/main-process/ink/longer-ink-snippets/list_random_subset_of_size.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "c7a9c370a9bd3bef71480e687d3a48249f7e6fddeebea189f6ca31e282c2a263"
+  },
+  "app/main-process/ink/longer-ink-snippets/list_with_commas.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "6547dfe5fc0533b80e4e070a2584a0c45788d74a5876c72f84b735deb2801a80"
+  },
+  "app/main-process/ink/longer-ink-snippets/maybe.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "9db3c09ad09dd3d372b1ed5e26d7e0bb76da85b8de9822885a996b9420af74bd"
+  },
+  "app/main-process/ink/longer-ink-snippets/print_number.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "1a3d75e314073025c035fe8134c4db8407dd2c8482871ad4166d7b0344f43d3a"
+  },
+  "app/main-process/ink/longer-ink-snippets/seen_more_recently_than.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "3ec9f4a9e0124e0a389d498426841359d945458c4466a9758ee6718897366fc9"
+  },
+  "app/main-process/ink/longer-ink-snippets/seen_this_scene.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "b1f64257af69229ae749ea3c12f1d9c841bf50050330e2acfb47b059834e82ac"
+  },
+  "app/main-process/ink/longer-ink-snippets/seen_very_recently.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "5a9a492facbb05c8345655a1a51fe834e903ef938e01191fcb4b371c7914f2b2"
+  },
+  "app/main-process/ink/longer-ink-snippets/storylets.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "14975a3718a9e1a4fa618e3e8dd03abc27af80e053309994d3a361265cdefb0a"
+  },
+  "app/main-process/ink/longer-ink-snippets/string_to_list.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "8334e74b37c70cd820b6d2a7ce3cdbc7393540d89e2bcf41e5655854c391f3ec"
+  },
+  "app/main-process/ink/longer-ink-snippets/swing_variables.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "592cb75025e15e8b5f6050e632f8bd59494d3bf42c5cc2a93a41eef789b7eb47"
+  },
+  "app/main-process/ink/longer-ink-snippets/thread_in_tunnel.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "84b46a7b67e40deb655cd5b374e0ed09ab45ff8e29a07fc4a00e9bd3c5a7b56a"
+  },
+  "app/main-process/ink/longer-ink-snippets/type_of.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "0e134e5b1b48a8d1f2e82b6aef4374e02e13a0d42262ad614eafb84f5d772d23"
+  },
+  "app/main-process/ink/longer-ink-snippets/uppercase.ink": {
+    "origin": "inkle/inky MIT 通用語法片段",
+    "sha256": "48f71e0fb3c355a69bc4a7afdfed42ef47168ebde40ff04d85adbd89aab7e6f3"
+  },
+  "app/renderer/test.ink": {
+    "origin": "本專案原創示範",
+    "sha256": "5106132abd9b2db011fe16b7bd96edf2901203f1f07002265ece5fe451207178"
+  },
+  "app/examples/霧港十三夜/主程式.ink": {
+    "origin": "依使用者指示改編其 Teafox113/novel-studio 霧港十三夜設定；本專案新增 Ink 敘事與教學流程",
+    "sha256": "7480ca24bb2623052833f631b516fc247cef9706e150120ac95b23224d600002"
+  },
+  "app/examples/霧港十三夜/系統工具.ink": {
+    "origin": "依使用者指示改編其 Teafox113/novel-studio 霧港十三夜設定；本專案新增 Ink 敘事與教學流程",
+    "sha256": "a2aac572534e4b9245fef65dc25d7df39809af1077a17544865b569e65e5c5f9"
+  },
+  "app/examples/霧港十三夜/角色建立.ink": {
+    "origin": "依使用者指示改編其 Teafox113/novel-studio 霧港十三夜設定；本專案新增 Ink 敘事與教學流程",
+    "sha256": "4066b833ffa5311456a2db036017c9207ec48fcca70562002bbe71390fe13f6d"
+  },
+  "app/examples/霧港十三夜/鐘塔議會.ink": {
+    "origin": "依使用者指示改編其 Teafox113/novel-studio 霧港十三夜設定；本專案新增 Ink 敘事與教學流程",
+    "sha256": "3e2c6ac4f1cf32dbadd743f9dfa9664806e44b5d4ccc5ddef937f40654a73707"
+  },
+  "app/examples/霧港十三夜/雨夜來客.ink": {
+    "origin": "依使用者指示改編其 Teafox113/novel-studio 霧港十三夜設定；本專案新增 Ink 敘事與教學流程",
+    "sha256": "75bc52b4ceddb94e2659880fe0254cd3ebdff266ba43ae7efbc757b284a3a27e"
+  }
+}

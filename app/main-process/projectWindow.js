@@ -43,18 +43,23 @@ var events = {
 
 
 function ProjectWindow(filePath) {
-    const getThemeFromMenu = () => Menu.getApplicationMenu().items.find(
-        e => e.label.toLowerCase() === '&view'
-    ).submenu.items.find(
-        e => e.label.toLowerCase() === 'theme'
-    ).submenu.items.find(
-        e => e.checked
-    ).label.toLowerCase();
+    const getThemeFromMenu = () => {
+        try {
+            // 用 id 查主題選單，不受 UI 語言影響
+            const themeMenuItem = Menu.getApplicationMenu().getMenuItemById('inky-theme-menu');
+            if (themeMenuItem && themeMenuItem.submenu) {
+                const checked = themeMenuItem.submenu.items.find(e => e.checked);
+                if (checked) return checked.label.toLowerCase();
+            }
+        } catch(e) { /* ignore */ }
+        return 'light'; // fallback
+    };
 
     electronWindowOptions.title = i18n._("Inky");
     this.browserWindow = new BrowserWindow(electronWindowOptions);
     this.browserWindow.loadURL("file://" + __dirname + "/../renderer/index.html");
     this.browserWindow.setSheetOffset(49);
+
 
     this.safeToClose = false;
     this.mainInkAbsPath = filePath;
@@ -163,9 +168,10 @@ ProjectWindow.prototype.refreshProjectSettings = function(rootInkFilePath) {
 
 
     const resolvedRootPath = path.resolve(rootInkFilePath);
+    const fileExt = path.extname(resolvedRootPath);
     let basePath = rootInkFilePath;
-    if( path.extname(resolvedRootPath) == ".ink" ) {
-        basePath = rootInkFilePath.substring(0, resolvedRootPath.length-4)
+    if( fileExt ) {
+        basePath = rootInkFilePath.slice(0, rootInkFilePath.length - fileExt.length);
     }
     const settingsPath = basePath + ".settings.json";
 
@@ -296,10 +302,13 @@ function addRecentFile(filePath) {
 ProjectWindow.open = function(filePath) {
     if( !filePath ) {
         var multiSelectPaths = dialog.showOpenDialogSync({
-            title: i18n._("Open main ink file"),
+            title: i18n._("Open file"),
             properties: ['openFile'],
             filters: [
-                { name: i18n._('Ink files'), extensions: ['ink'] }
+                { name: i18n._('Ink files'), extensions: ['ink'] },
+                { name: i18n._('Lua files'),  extensions: ['lua'] },
+                { name: i18n._('Text files'), extensions: ['txt'] },
+                { name: i18n._('All files'),  extensions: ['*'] }
             ]
         });
         if( multiSelectPaths && multiSelectPaths.length > 0 )

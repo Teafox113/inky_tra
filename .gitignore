@@ -13,3 +13,20 @@ app/renderer/documentation/
 *.AppImage
 AppImage
 .DS_Store
+
+# Fork development / private material
+.local/
+dist/
+*.bak
+*.bak_*
+*.asar
+*.zip
+*.rar
+*.7z
+.env
+.env.*
+translation-settings.json
+translation-usage.json
+memory.md
+soul.md
+app/renderer/img/avatar.png

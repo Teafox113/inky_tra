@@ -59,6 +59,23 @@
         <div class="buttons right">
           <div class="busySpinner"></div>
 
+          <!-- 翻譯按鈕 -->
+          <div class="button translation-btn" id="toolbar-translate-btn" title="翻譯目前檔案 (Ctrl+Shift+T)">
+            <span style="font-size:14px;">譯</span>
+          </div>
+          <div class="button translation-sel-btn" id="toolbar-translate-sel-btn" title="翻譯選取文字 (Ctrl+Shift+S)&#10;先用滑鼠拖曳選取文字，再按此按鈕">
+            <span style="font-size:11px;">譯選</span>
+          </div>
+          <div class="button translation-settings-btn" id="toolbar-translation-settings-btn" title="翻譯設定">
+            <span style="font-size:11px;">⚙️</span>
+          </div>
+          <div class="button" id="as-open-btn" title="即時 AI 助理 (Ctrl+Shift+A)" style="margin-left:2px;">
+            <span style="font-size:12px;">🤖</span>
+          </div>
+          <div class="button translation-about-btn" id="toolbar-translation-about-btn" title="使用說明 (F1)">
+            <span style="font-size:13px;font-weight:700;color:#0a84ff;">?</span>
+          </div>
+
           <div class="button step-back i18n" title="Rewind a single choice">
             <span class="icon icon-reply"></span>
           </div>
@@ -163,4 +180,6 @@
   <script>
     require('./controller.js');
   </script>
+
+  <!-- 翻譯功能樣式由 translationView.js 動態注入 -->
 </html>

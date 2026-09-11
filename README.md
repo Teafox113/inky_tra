@@ -1,174 +1,82 @@
-![](resources/icon-small.jpg)
+# Inky Translation Fork — 繁體中文與 AI 翻譯擴充版
 
-# Inky
+由 **FloofyFox** 維護的非官方 [Inky](https://github.com/inkle/inky) fork，提供繁體中文介面、Ink 文本翻譯與 AI 助理，適合互動小說作者與在地化工作者。
 
-**Inky** is an editor for [ink](http://www.inklestudios.com/ink), inkle's markup language for writing interactive narrative in games, as used in [80 Days](http://www.inklestudios.com/80days). It's an IDE (integrated development environment), because it gives you a single app that lets you play in the editor as you write, and fix any bugs in your code.
+| 項目 | 資訊 |
+|---|---|
+| 版本 | **1.8.0-dev.3**（開發版，尚未正式發布） |
+| 修改日期 | 2026-09-12 |
+| 維護者 | [FloofyFox](https://github.com/Teafox113) |
+| 倉庫 | https://github.com/Teafox113/inky_tra |
+| 改編來源 | 既有 Inky 0.15.2 改編程式；原說明頁標示擴充版 v1.7 |
+| 目標平台 | Windows x64；macOS／Linux 尚未驗證 |
+| 預定發布檔名 | `Inky-Translation-Fork-v1.8.0-dev.3-windows-x64.zip` |
 
-![](resources/screenshot.gif)
+本專案並非 inkle 官方發布，也不代表 inkle 為新增功能背書。Inky 與 ink 原作者為 inkle Ltd.；保留原始 MIT 授權。
 
-## Features
+## 本版本功能
 
-- **Play as you write**: The play pane remembers the choices that you made, so when Inky recompiles, it fast-forwards to the last point you were at in the flow.
-- **Syntax highlighting**
-- **As-you-type error highlighting**. Inky is constantly compiling, allowing you to fix errors early.
-- **Issue browser**: Lists errors, warnings and TODOs in your **ink**,  and allows you to jump to the exact line number and file in the source.
-- **Jump to definition**: Divert targets (like `-> theStreet`) are hyperlinked can be followed by alt-clicking.
-- **Support multi-file projects**: - Inky automatically infers your story's structure from the `INCLUDE` lines, meaning that there's no need for an additional project file. To create a new include file, simply type `INCLUDE yourfile.ink` where you want to include it.
-- **Export to JSON**: Although this isn't necessary if you're using the [ink-Unity-integration plugin](https://assetstore.unity.com/packages/tools/integration/ink-unity-integration-60055), Inky allows you to export to ink's compiled JSON format, which is especially useful in other ink runtime implementations, such as [inkjs](https://github.com/y-lohse/inkjs), for running **ink** on the web.
-- **File watching**: Modern text editors, including Inky, watch for changes to files on disk, so that if you change them it reflects those changes. This is especially helpful if you keep your **ink** in source control.
+- 繁體中文／英文介面切換。
+- 目前檔案、專案與選取文字翻譯，透過使用者設定的 API 執行。
+- OpenRouter 模型清單與價格顯示、自訂 OpenAI 相容端點。
+- 翻譯用量及費用估算、批次處理與部分錯誤重試。
+- Ink 行類型解析、部分標籤保護、CSV 詞彙表。
+- 搜尋取代及 AI 助理面板；助理可使用角色預設、附加文本、記憶與人格設定。
+- 預設「霧港十三夜」教學：角色建立、點數分配、三層分支、物品與四種結局；另保留「雨天書店」及英文翻譯練習。
 
-## Project status
+上述既有功能已匯入；完整互動驗證仍在進行，不能視為全部已通過發布驗收。
 
-Inky has been used extensively on multiple projects by different developers. Nevertheless, it isn't as robust or feature complete as many other text editors you may have used, since it's specialist software made by game developers in their spare time.
+## 開啟 Windows 測試版
 
-The informal [TODO.md](TODO.md) lists some missing features and known issues. If you want to discuss one, or request a new fix or feature, please [create a github issue](http://www.github.com/inkle/inky/issues).
+解壓 Inky-Translation-Fork-v1.8.0-dev.3-windows-x64.zip 後，雙擊 Inky-Translation-Fork.exe。首次啟動預設繁體中文並開啟「霧港十三夜」。舊版使用者升級後也展示一次；可從 **範例 → 開啟範例：霧港十三夜（角色與分支教學）** 重新開啟。ZIP 中也有可直接瀏覽的 **範例** 資料夾。
 
-To keep up to date with the latest news about ink [sign up for the mailing list](http://www.inklestudios.com/ink#signup).
+程式會在自己的使用者資料目錄建立範例副本，重開時保留你的編輯。若先前明確選擇英文，可在翻譯設定的介面語言切回繁中。
 
-## Download
+## 開發啟動
 
-### Mac, Windows and Linux
+需要 Windows、Git 與 Node.js 22 以上。
 
-[Download the latest release](http://www.github.com/inkle/inky/releases/latest)
+```powershell
+git clone https://github.com/Teafox113/inky_tra.git
+cd inky_tra
+npm --prefix app ci
+npm start
+```
 
-## Project settings file
+本倉庫提供 1.8.0-dev.3 開發版原始碼。Windows 測試包可依下方建置命令自行產生；目前尚未建立可下載的 GitHub Release。
 
-**Warning: For the technically inclined - you need to understand what a JSON file is to do the following!**
+本機啟動使用本工作區 `.local/user-data/`，與舊 Inky 的設定分開。正式封裝使用獨立的 `Inky Translation Fork` 使用者資料目錄。開啟 `app/examples/霧港十三夜/主程式.ink` 可體驗完整教學，詳見 [範例說明](app/examples/霧港十三夜/README.md)。請複製整個範例資料夾，保留 INCLUDE 相對路徑。
 
-To customise Inky settings for your specific ink project, create a JSON file with the same name as your main ink file, except with a `.settings.json` extension. For example, if your main ink file is called `my_great_story.ink`, then name your JSON file `my_great_story.settings.json`.
+翻譯練習請先將 `app/examples/translation-practice/` 複製到 `.local/`，設定自己的 API，開啟 `practice.ink` 並選用同資料夾的 `glossary.csv`。API 測試會依服務商規則產生費用。
 
-Here is an example settings file:
+## 驗證與建置
 
-    {
-        "customInkSnippets": [
-            {
-                "name": "Heaven's Vault",
-                "submenu": [
-                    {
-                        "name": "Camera",
-                        "ink": ">>> CAMERA: Wide shot"
-                    },
-                    {
-                        "separator": true
-                    },
-                    {
-                        "name": "Walk",
-                        "ink": ">>> WALK: TheInscription"
-                    },
-                    {
-                        "name": "More snippets",
-                        "submenu": [
-                            {
-                                "name": "A snippet in a submenu",
-                                "ink": "This snippet of ink came from a submenu."
-                            },
-                        ]
-                    }
-                ]
-            }
-        ],
+```powershell
+npm test
+npm run check:publish
+npm run build:win
+```
 
-        "instructionPrefix": ">>>"
-    }
+Windows 建置輸出至被 Git 忽略的 `dist/`，使用版本化目錄與 EXE metadata。建置不會建立 GitHub Release 或推送。第一次建置可能下載 Electron；正式發布前須完成 [繁中測試計畫](docs/繁中測試計畫.md)。
 
-* `customInkSnippets` - this array allows your to add your own project-specific ink snippets to the Ink menu. There are three types of item you can add to the array:
-    * **An ink snippet**: Requires `name` for the name of the menu item and `ink` for the snippet of ink it will insert into the editor.
-    * **A separator**: Use `{"separator": true}` to add a horizonal line separator into the menu at this point.
-    * **A sub-menu**: To nest more snippets into a sub-menu, use `name` for the sub-menu name, and then `submenu` with another array in the same format.
+## 隱私與資料處理
 
+- 一般編輯與 Ink 編譯在本機執行。
+- 執行翻譯或 AI 對話時，所選文本、提示詞、詞彙表，以及附加的上下文可能送至設定的 API。助理的人格與記憶會加入對話提示。
+- 模型清單／連線測試也可能連線至服務商。本程式不能控制第三方的保存政策或費用。
+- 「記住 API Key」目前會將 Key 存在本機 JSON，**未加密**。本倉庫不包含任何 Key 或私人設定。
+- 費用顯示是依回傳 token 與設定單價計算的估算值，應以供應商帳單為準。
 
-* `instructionPrefix` - A common convention is to use a particular text format in ink to instruct the game to perform certain actions rather than presenting the text verbatim to players.
+## 已知限制
 
-    For example, at inkle we would write something like `>>> CAMERA: BigSwoop` in ink. The `>>>` isn't directly built into ink, and this entire text is simply passed through as plain text. But we have custom game code to interpret it and turn it into an action that takes place in-game. To help support this within Inky, you can define an *instructionPrefix*, if you have a particular consistent way of writing these actions. 
-    
-    When Inky sees this, it will highlight the line of text both in the editor and player views, so that you can clearly see that it's not part of the game text itself.
+- Ink 翻譯解析器並非完整編譯器；選取文字翻譯會略過逐行 Ink 解析。翻譯後需編譯與人工確認。
+- 助理目前直接附加文本；精確語法分離、可確認 diff 的自動修改流程尚未完成。
+- 詞彙表後處理主要替換殘留英文，不保證修正所有中文譯名變體。
+- 尚未完成整套 UI、API、IME 中文輸入與封裝互動測試；承接的 Electron 30 系列依賴仍待升級評估。
+- 編輯器顯示中文不代表其他遊戲引擎也支援中文字型。
+- 範例姓名採選項或編輯 VAR；預覽未實作自由文字輸入／數值表單。Ink 變數記住本次遊玩，保存 .ink 是保存原始碼，並非遊戲進度存檔。
+- 不含第三方商業遊戲原文、譯文或素材。「霧港十三夜」依使用者指示改編其 Novel Studio 範例設定，新增 Ink 敘事與流程；另保留原創練習與上游 MIT 通用語法片段。
 
+## 授權與維護
 
-## Implementation details
-
-Inky is built using:
-
-* [Electron](http://electron.atom.io/), a framework by GitHub to build cross-platform Desktop app using HTML, CSS and JavaScript.
-* [Ace](https://ace.c9.io/#nav=about), a full-featured code editor built for the web.
-* [Photon](http://photonkit.com/), for some of the components. However, the dependency could probably be removed, since its only used for small portions of the CSS.
-
-Inky includes a copy of **inklecate**, the command line **ink** compiler.
-
-## Help develop Inky!
-
-Take a look at the [issues page](https://github.com/inkle/inky/issues) for an issue with a "help wanted" label. We try to provide some basic instructions on how to get started with the development of the feature whenever we add the label.
-
-To build the project:
-
-* Install [node.js](https://nodejs.org/en/) if you don't already have it
-* Clone the repo
-* On Mac, double-click the `INSTALL_AND_RUN.command` script. On Windows, open Powershell, cd into the app directory, and type `npm install`, then `npm start`.
-* For subsequent runs, if no npm packages have changed, you can run the `RUN.command` script on Mac, or type `npm start` in the shell (on Windows).
-
-### Linux
-
-Tested on a fresh **Ubuntu 16.04 LTS** VM installation (_equivalent processes should work for other distributions_)
-
-* Install build tools
-
-`sudo apt-get install -y dkms build-essential linux-headers-generic linux-headers-$(uname -r)`
-
-* Pre-requisites
-
-`sudo apt install git`
-
-`sudo apt install curl`
-
-* Install node and npm
-
-`curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -`
-
-`sudo apt-get install -y nodejs`
-
-* Install mono as per http://www.mono-project.com/download/stable/#download-lin
-
-`sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF`
-
-`echo "deb http://download.mono-project.com/repo/ubuntu stable-xenial main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list`
-
-`sudo apt-get update`
-
-`sudo apt-get install mono-complete`
-
-* Clone the inky repo
-
-`git clone https://github.com/inkle/inky.git`
-
-* Test inklecate_win with mono (_should output usage info_)
-
-`mono app/main-process/ink/inklecate_win.exe`
-
-* Install and run inky
-
-`./INSTALL_AND_RUN.command`
-
-* For subsequent runs, if no npm packages have changed, launch inky as below (otherwise re-run previous step):
-
-`./RUN.command`
-
-### Translation
-
-Translation files are located under `app/main-process/i18n/`.  
-If a particular locale file is missing (or if it's missing some keys), you can generate it with the following command: `cd app && npm run generate-locale -- <locale> ./main-process/i18n/`.
-
-## License
-
-**Inky** and **ink** are released under the MIT license. Although we don't require attribution, we'd love to know if you decide to use **ink** a project! Let us know on [Twitter](http://www.twitter.com/inkleStudios) or [by email](mailto:info@inklestudios.com).
-
-### The MIT License (MIT)
-Copyright (c) 2016 inkle Ltd.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
--
-
-*Inky is named after a black cat based in Cambridge, UK.*
+詳見 [LICENSE](LICENSE)、[第三方授權](THIRD_PARTY_LICENSES.md)、[修改紀錄](CHANGELOG.md) 與 [專案地圖](docs/PROJECT_MAP.md)。原始上游說明保留於 [UPSTREAM_README.md](docs/UPSTREAM_README.md)。
