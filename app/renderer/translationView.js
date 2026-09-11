@@ -232,6 +232,7 @@ async function init(inkProject, editorView) {
 
     ipc.on('translation-translate-current',  () => translateCurrentFile());
     ipc.on('translation-translate-project',  () => translateProject());
+    ipc.on('translation-open-glossary', () => openGlossaryManager());
     ipc.on('translation-open-settings',      () => openSettingsDialog());
     ipc.on('translation-show-usage',         () => openSettingsDialog());
     ipc.on('translation-progress',   (event, data) => updateProgress(data));
@@ -894,6 +895,7 @@ function _buildSettingsModal() {
         <div class="tm-field-row">
           <input type="text" id="tm-glossary-path" placeholder="glossary.csv">
           <button id="tm-glossary-browse">${t('browse')}</button>
+          <button id="tm-glossary-manage">詞彙表管理／AI 建表</button>
         </div>
       </div>
       <div class="tm-field">
@@ -1014,6 +1016,7 @@ function _buildSettingsModal() {
     // 測試連線（其他 API）
     document.getElementById('tm-test-btn').addEventListener('click', _testOtherApi);
 
+    document.getElementById('tm-glossary-manage').addEventListener('click', () => openGlossaryManager());
     // 瀏覽詞彙表
     document.getElementById('tm-glossary-browse').addEventListener('click', async () => {
         const result = await ipc.invoke('showOpenDialog', {
@@ -1735,7 +1738,7 @@ function _buildAboutModal() {
           <div class="ab-feat-icon">📖</div>
           <div class="ab-feat-body">
             <div class="ab-feat-title">詞彙表支援（glossary.csv）</div>
-            <div class="ab-feat-desc">在翻譯設定中指定 CSV 詞彙表路徑，讓 AI 依照固定對照翻譯專有名詞（角色名、地點名等）。格式：<code>原文,譯文</code>，UTF-8 編碼。</div>
+            <div class="ab-feat-desc">從「翻譯 → 詞彙表管理／AI 建表」開啟。支援原文、譯文、分類、備註、採用狀態；可 AI 掃描選取文字、目前檔案或已載入專案，確認後儲存套用。相容兩欄 CSV，UTF-8 編碼。</div>
           </div>
         </li>
         <li>
@@ -1902,3 +1905,17 @@ module.exports = {
         closeAboutModal
     }
 };
+
+function openGlossaryManager() {
+    require('./glossaryView').open({
+        getApiKey: () => _sessionApiKey,
+        onCost: data => _accumulateCost(data),
+        onSaved: filePath => { const input=document.getElementById('tm-glossary-path');if(input)input.value=filePath; },
+        getDocuments: scope => {
+            if(scope==='selection')return [{name:'編輯器選取文字',text:ace.edit('editor').getSelectedText()}];
+            if(scope==='current')return [{name:'目前編輯檔案',text:_editorView ? _editorView.getValue() : ''}];
+            const files=_inkProject?.currentProject?.inkFiles || [];
+            return files.map(f=>({name:f.relPath || '未命名檔案',text:f.aceDocument.getValue()}));
+        }
+    });
+}

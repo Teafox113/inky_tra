@@ -387,6 +387,12 @@ function refresh() {
                     }
                 },
                 {
+                    label: i18n._('詞彙表管理／AI 建表'),
+                    click: (item, focusedWindow) => {
+                        if (focusedWindow) focusedWindow.webContents.send('translation-open-glossary');
+                    }
+                },
+                {
                     label: i18n._('查看用量統計'),
                     click: (item, focusedWindow) => {
                         if (focusedWindow) focusedWindow.webContents.send('translation-show-usage');

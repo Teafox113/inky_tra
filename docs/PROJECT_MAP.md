@@ -18,3 +18,7 @@
 origin 為 Teafox113/inky_tra；upstream 為 inkle/inky。本機開發分支 codex/zh-tw-workspace。原翻譯專案留在舊位置，不屬於本倉庫。
 
 共用參考資料：`F:\APP開發\制式資訊\INKY`。版本與 README 更新後，執行該目錄的 `同步資料.ps1`；僅同步列明的版本與說明文件，不同步程式、遊戲或個人設定。
+
+- app/main-process/glossary.js：CSV 解析、欄位驗證、候選詞審閱與去重模型。
+- app/renderer/glossaryView.js：詞彙表管理、範圍確認、分批掃描與人工採用。
+- tests/glossary.test.js：CSV 相容性、錯誤與模擬 AI 回應／費用驗證。

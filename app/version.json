@@ -1,7 +1,7 @@
 {
   "appName": "Inky Translation Fork",
-  "fileName": "Inky-Translation-Fork-v1.8.0-dev.3-windows-x64.zip",
-  "version": "1.8.0-dev.3",
+  "fileName": "Inky-Translation-Fork-v1.8.0-dev.4-windows-x64.zip",
+  "version": "1.8.0-dev.4",
   "edition": "Windows x64 開發版",
   "modifiedDate": "2026-09-12",
   "creator": "FloofyFox",
@@ -26,11 +26,13 @@
     "搜尋取代",
     "AI 助理",
     "原創操作示範",
-    "霧港十三夜：角色建立、點數分配與巢狀分支教學"
+    "霧港十三夜：角色建立、點數分配與巢狀分支教學",
+    "CSV 詞彙表管理、分類與 AI 基礎表擷取"
   ],
   "releaseNotes": [
-    "首次開啟載入霧港十三夜；既有使用者升級也展示一次",
-    "五檔 Ink 教學涵蓋姓名、三種背景、屬性、技能、物品、條件檢定與四種結局"
+    "新增詞彙表管理與人工採用流程",
+    "AI 掃描選取文字、目前檔案及已載入專案；分批、停止與用量統計",
+    "CSV 支援引號、逗號與換行，未採用的詞彙不參與翻譯"
   ],
   "knownLimitations": [
     "完整互動驗收待完成",

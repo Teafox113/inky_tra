@@ -1,7 +1,7 @@
 {
   "name": "inky-translation-fork",
   "productName": "Inky Translation Fork",
-  "version": "1.8.0-dev.3",
+  "version": "1.8.0-dev.4",
   "description": "Inky 繁體中文介面與 AI 翻譯擴充版",
   "main": "main-process/main.js",
   "repository": {

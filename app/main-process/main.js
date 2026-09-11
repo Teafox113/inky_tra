@@ -91,6 +91,42 @@ ipcMain.handle('translation-test-api', async (event, settings) => {
     return translation.testApiConnection(settings);
 });
 
+// Glossary operations use native file pickers; AI never selects a filesystem path.
+ipcMain.handle('glossary-open', async (event, useConfigured) => {
+    try {
+        let filePath = useConfigured ? translation.loadSettings().glossaryPath : '';
+        if (!filePath && useConfigured) return {ok:true,rows:[],filePath:''};
+        if (!useConfigured) {
+            const result = await dialog.showOpenDialog(BrowserWindow.fromWebContents(event.sender), {title:'開啟專案詞彙表',filters:[{name:'CSV 詞彙表',extensions:['csv']}],properties:['openFile']});
+            if(result.canceled)return {canceled:true};
+            filePath=result.filePaths[0];
+        }
+        if(nodeFs.statSync(filePath).size>8*1024*1024)throw new Error('詞彙表檔案超過 8 MB。');
+        return {ok:true,filePath,rows:require('./glossary').parseCSV(nodeFs.readFileSync(filePath,'utf8'))};
+    }catch(e){return {ok:false,error:e.message};}
+});
+ipcMain.handle('glossary-save', async (event, rows, suggestedPath) => {
+    try {
+        const csv = require('./glossary').toCSV(rows);
+        const result = await dialog.showSaveDialog(BrowserWindow.fromWebContents(event.sender), {title:'儲存並套用詞彙表',defaultPath:suggestedPath || 'glossary.csv',filters:[{name:'CSV 詞彙表',extensions:['csv']}]});
+        if(result.canceled)return {canceled:true};
+        const filePath=result.filePath;
+        if(nodePath.extname(filePath).toLowerCase()!=='.csv')throw new Error('請使用 .csv 副檔名。');
+        if(nodeFs.existsSync(filePath))nodeFs.copyFileSync(filePath,filePath+'.bak_'+Date.now(),nodeFs.constants.COPYFILE_EXCL);
+        nodeFs.writeFileSync(filePath,csv,'utf8');
+        const settings=translation.loadSettings();settings.glossaryPath=filePath;
+        if(!translation.saveSettings(settings))throw new Error('CSV 已儲存，但無法更新設定。請手動選擇詞彙表路徑。');
+        return {ok:true,filePath};
+    }catch(e){return {ok:false,error:e.message};}
+});
+ipcMain.handle('glossary-extract', async (event, text, runtimeApiKey) => {
+    try {
+        const settings=translation.loadSettings();
+        if(runtimeApiKey)settings.apiKey=runtimeApiKey;
+        return await translation.extractGlossary(text,settings);
+    }catch(e){return {ok:false,error:'掃描未完成：'+e.message};}
+});
+
 // ── 自動偵測 glossary.csv 輔助函式 ───────────────────
 function resolveGlossary(explicitPath, nearFilePath) {
     if (explicitPath && nodeFs.existsSync(explicitPath)) return explicitPath;
